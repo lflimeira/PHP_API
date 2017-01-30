@@ -79,7 +79,26 @@ class Client
 		
 	}
 	function doPut($route){
-		
+		$sql = 'update api.client 
+						set 
+						name = :name
+						, age = :age
+						, gender = :gender
+						where id = :id';
+	    $stmt = $this->db->prepare($sql);
+	    $stmt->bindValue(':name', $this->name);
+	    $stmt->bindValue(':age', $this->age);
+	    $stmt->bindValue(':gender', $this->gender);
+	    $stmt->bindValue(":id", $route[1]);
+	    $stmt->execute();
+
+	    if($stmt->rowCount() > 0)
+	    {
+			return $arr_json = array('status' => 200);
+	    }else{
+			return $arr_json = array('status' => 400);
+	    }
+
 	}
 	function doDelete($route){
 		

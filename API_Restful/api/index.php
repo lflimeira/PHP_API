@@ -3,7 +3,8 @@
 	$method = $_SERVER['REQUEST_METHOD'];
 
 	$route = substr($route, 1);
-	$route = explode("/", $route);
+	$route = explode("?", $route);
+	$route = explode("/", $route[0]);
 	$route = array_diff($route, array('API_Restful', 'api'));
 	$route = array_values($route);
 
