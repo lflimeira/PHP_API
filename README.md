@@ -16,11 +16,11 @@ You can use the API from a web front-end application, mobile app and also using 
 We have 4 methods of access the API:
 
 1. GET
-1. POST
+2. POST
 3. PUT
 4. DELETE
 
-- `GET method` (used to return an existing client): It's accessed using the URL http://localhost/API_Restful/api/client/(existing client id) as in the following exampl:
+- `GET method` (used to return an existing client): It's accessed using the URL http://localhost/API_Restful/api/client/(existing client id) as in the following example:
 
 ![GET method](https://raw.githubusercontent.com/lflimeira02/PHP_API/master/API_Restful/api/doc_img/get.png)
 
