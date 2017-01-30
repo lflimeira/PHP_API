@@ -105,17 +105,7 @@ class Client
 
 	}
 	function doDelete($route){
-		$sql = 'DELETE FROM api.client WHERE id = :id';
-	    $stmt = $this->db->prepare($sql);
-	    $stmt->bindValue(":id", $route[1]);
-	    $stmt->execute();
-
-	    if($stmt->rowCount() > 0)
-	    {
-			return $arr_json = array('status' => 200);
-	    }else{
-			return $arr_json = array('status' => 400);
-	    }
+		
 	}
 }
 ?>
