@@ -29,7 +29,11 @@ class Client
 			break;
 		case 'POST':
 			# Quando o metodo for POST, incluí um novo usuário.
-			return self::doPost(); 
+			if(empty($route[1])){
+				return self::doPost();
+			}else{
+				return $arr_json = array('status' => 404);
+			} 
 			break;
 		case 'PUT':
 			# Quando o metodo for PUT, altera um usuário existente.
@@ -79,12 +83,12 @@ class Client
 		
 	}
 	function doPut($route){
-		$sql = 'update api.client 
-						set 
+		$sql = 'UPDATE api.client 
+						SET 
 						name = :name
 						, age = :age
 						, gender = :gender
-						where id = :id';
+						WHERE id = :id';
 	    $stmt = $this->db->prepare($sql);
 	    $stmt->bindValue(':name', $this->name);
 	    $stmt->bindValue(':age', $this->age);
@@ -101,7 +105,17 @@ class Client
 
 	}
 	function doDelete($route){
-		
+		$sql = 'DELETE FROM api.client WHERE id = :id';
+	    $stmt = $this->db->prepare($sql);
+	    $stmt->bindValue(":id", $route[1]);
+	    $stmt->execute();
+
+	    if($stmt->rowCount() > 0)
+	    {
+			return $arr_json = array('status' => 200);
+	    }else{
+			return $arr_json = array('status' => 400);
+	    }
 	}
 }
 ?>
